@@ -2,9 +2,9 @@ package gdb
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"strconv"
-	"strings"
 )
 
 // NotificationCallback is a callback used to report the notifications that GDB
@@ -29,9 +29,16 @@ func (gdb *Gdb) Send(operation string, arguments ...string) (map[string]interfac
 	pending := make(chan map[string]interface{})
 	gdb.pending[sequence] = pending
 
+	// prepare the command
+	buffer := bytes.NewBufferString(fmt.Sprintf("%s-%s", sequence, operation))
+	for _, argument := range arguments {
+		buffer.WriteByte(' ')
+		buffer.WriteString(strconv.Quote(argument))
+	}
+	buffer.WriteByte('\n')
+
 	// send the command
-	command := fmt.Sprintf("%s-%s %s\n", sequence, operation, strings.Join(arguments, " "))
-	if _, err := gdb.stdin.Write([]byte(command)); err != nil {
+	if _, err := gdb.stdin.Write(buffer.Bytes()); err != nil {
 		return nil, err
 	}
 
@@ -50,6 +57,8 @@ func (gdb *Gdb) recordReader() {
 			continue
 		}
 
+		// parse the line and distinguish between command result and
+		// notification
 		record := parseRecord(line)
 		sequence, isResult := record[sequenceKey]
 		if isResult {

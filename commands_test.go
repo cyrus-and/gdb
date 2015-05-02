@@ -39,6 +39,15 @@ func TestSend(t *testing.T) {
 		t.Error("no console records received")
 	}
 
+	// try sending a command with an argument containing a space
+	result, err = gdb.Send("var-create", "foo", "@", "40 + 2")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if class, hasClass := result["class"]; !hasClass || class != "done" {
+		t.Error(result, "has not class 'done'")
+	}
+
 	// try sending a wrong command
 	result, err = gdb.Send("foobarbaz")
 	if err != nil {
