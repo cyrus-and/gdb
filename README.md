@@ -7,6 +7,26 @@ is to avoid the tedious parsing of the MI2 line-based text interface and bypass
 a [known bug][mi2-bug] which prevent to distinguish the target program's output
 from MI2 records.
 
+Example
+-------
+
+```
+package main
+
+import (
+	"fmt"
+	"github.com/cyrus-and/gdb"
+)
+
+func main() {
+	gdb, _ := gdb.New(nil)
+	gdb.Send("var-create", "foo", "@", "40 + 2")
+	result, _ := gdb.Send("var-evaluate-expression", "foo")
+	fmt.Println(result)
+	gdb.Exit()
+}
+```
+
 Installation
 ------------
 
