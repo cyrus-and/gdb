@@ -7,7 +7,7 @@ tedious parsing of the MI2 line based text interface.
 
 The objects returned as a result of the commands or as asynchronous
 notifications are generic Go maps suitable to be converted to JSON format with
-`json.Unmarshal()`. The fields present in such objects are blindly added
+`json.Marshal()`. The fields present in such objects are blindly added
 according to the records returned from GDB (see the
 [command syntax][mi2-syntax]): tuples are `map[string]interface{}` and lists are
 `[]interface{}`. There are a couple of exceptions to this:
