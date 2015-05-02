@@ -10,7 +10,7 @@ from MI2 records.
 Example
 -------
 
-```
+```go
 package main
 
 import (
@@ -66,18 +66,22 @@ For example, the notification:
 
 becomes the Go map:
 
-    map[type:notify class:thread-group-exited payload:map[id:i1 exit-code:0]]
+```go
+map[type:notify class:thread-group-exited payload:map[id:i1 exit-code:0]]
+```
 
 which can be converted to JSON with `json.Marshal()` obtaining:
 
-    {
-        "class": "thread-group-exited",
-        "payload": {
-            "exit-code": "0",
-            "id": "i1"
-        },
-        "type": "notify"
-    }
+```json
+{
+    "class": "thread-group-exited",
+    "payload": {
+        "exit-code": "0",
+        "id": "i1"
+    },
+    "type": "notify"
+}
+```
 
 Caveats
 -------
