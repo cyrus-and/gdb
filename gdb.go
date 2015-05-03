@@ -85,6 +85,12 @@ func (gdb *Gdb) Write(p []byte) (n int, err error) {
 	return gdb.ptm.Write(p)
 }
 
+// Interrupt sends a signal (SIGINT) to GDB so it can stop the target program
+// and resume the processing of commands.
+func (gdb *Gdb) Interrupt() error {
+	return gdb.cmd.Process.Signal(os.Interrupt)
+}
+
 // Exit sends the exit command to GDB and waits for the process to exit.
 func (gdb *Gdb) Exit() error {
 	// send the exit command and wait for the GDB process
