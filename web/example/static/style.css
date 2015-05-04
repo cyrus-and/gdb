@@ -1,0 +1,47 @@
+body {
+    font-family: sans;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+label {
+    display: block;
+    margin-top: 1em;
+}
+
+.toolbar {
+    overflow: hidden;
+}
+
+.toolbar-button {
+    float: right;
+}
+
+.toolbar-text {
+    overflow: hidden;
+    display: block;
+    padding-right: 1em;
+}
+
+input[type=text] {
+    width: 100%;
+}
+
+.window {
+    font-family: monospace;
+    white-space: pre-wrap;
+    background: black;
+    color: #0f0;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+#source span {
+    display: block;
+}
+
+.selected {
+    background: #0f0;
+    color: #000;
+}

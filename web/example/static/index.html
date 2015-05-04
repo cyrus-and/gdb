@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>gdb/web example</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <label>Executable:</label>
+    <div>
+      <input id="load" type="submit" value="Load" class="toolbar-button"/>
+      <span class="toolbar-text"><input id="file" type="text"/></span>
+    </div>
+    <label>Input:</label>
+    <div>
+      <input id="arguments" type="text"/>
+    </div>
+    <p>
+      <input id="run" type="submit" value="Run"/>
+      <input id="continue" type="submit" value="Continue"/>
+      <input id="step" type="submit" value="Step"/>
+      |
+      <input id="interrupt" type="submit" value="Interrupt"/>
+      <div id="status" class="window">(load and run a program)</div>
+    </p>
+    <div class="window" id="source">(no source available)</div>
+    <div class="window" id="result">Ready!</div>
+    <label>Input:</label>
+    <div>
+      <input id="eot" type="submit" value="EOT" class="toolbar-button"/>
+      <input id="send" type="submit" value="Send" class="toolbar-button"/>
+      <span class="toolbar-text"><input id="line" type="text"/></span>
+    </div>
+    <label>Output:</label>
+    <div class="window" id="output"></div>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>

@@ -7,6 +7,15 @@ is to avoid the tedious parsing of the MI2 line-based text interface and bypass
 a [known bug][mi2-bug] which prevent to distinguish the target program's output
 from MI2 records.
 
+Web interface
+-------------
+
+This package comes with an additional [HTTP/WebSocket interface](web/) which
+aims to provide a straightforward way to start developing HTML based GDB front
+ends.
+
+A dummy example can be found in the [example folder](web/example).
+
 Example
 -------
 
