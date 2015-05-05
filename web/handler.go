@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"sync"
 )
 
 const (
@@ -47,31 +46,16 @@ func NewHandler() (*http.ServeMux, error) {
 	// notifications WebSocket
 	handler.Handle(NotificationsUrl, websocket.Handler(func(ws *websocket.Conn) {
 		// deliver the notifications through the WebSocket
-		log.Print("### notification WS opened")
 		for notification := range notificationsChan {
 			ws.Write(notification)
 		}
-		log.Print("### notification WS closed")
 	}))
 
 	// terminal WebSocket
 	handler.Handle(TerminalUrl, websocket.Handler(func(ws *websocket.Conn) {
 		// copy GDB to WS and WS to GDB
-		log.Print("### terminal WS opened")
-		var wg sync.WaitGroup
-		wg.Add(2)
-		go func() {
-			io.Copy(gdb, ws)
-			wg.Done()
-			log.Print("### write side closed")
-		}()
-		go func() {
-			io.Copy(ws, gdb)
-			wg.Done()
-			log.Print("### read side closed")
-		}()
-		wg.Wait()
-		log.Print("### terminal WS closed")
+		go io.Copy(gdb, ws)
+		io.Copy(ws, gdb)
 	}))
 
 	// send command action
