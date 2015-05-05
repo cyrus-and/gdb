@@ -4,7 +4,7 @@ web example
 This is a very simple example of how the `web` package can be used to build
 a web-based front end for GDB.
 
-![Screenshot](http://i.imgur.com/qF2TrZE.png)
+![Screenshot](http://i.imgur.com/Ql48hXT.png)
 
 Usage
 -----

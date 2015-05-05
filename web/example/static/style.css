@@ -16,16 +16,17 @@ label {
 
 .toolbar-button {
     float: right;
+    margin-left: 0.5em;
 }
 
 .toolbar-text {
     overflow: hidden;
     display: block;
-    padding-right: 1em;
 }
 
 input[type=text] {
     width: 100%;
+    box-sizing: border-box;
 }
 
 .window {
