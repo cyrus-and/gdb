@@ -28,17 +28,17 @@ func die(err error, w http.ResponseWriter) {
 // that only one client at a time access this multiplexer.
 func NewHandler() (*http.ServeMux, error) {
 	handler := http.NewServeMux()
-	messageChan := make(chan []byte)
+	notificationsChan := make(chan []byte)
 
 	// start a new GDB instance
 	gdb, err := gdb.New(func(notification map[string]interface{}) {
 		// notifications are converted to JSON and sent through the channel
-		message, err := json.Marshal(notification)
+		notificationText, err := json.Marshal(notification)
 		if err != nil {
 			log.Fatal(err)
 		}
-		messageChan <- message
-		log.Print(">>> ", string(message))
+		notificationsChan <- notificationText
+		log.Print(">>> ", string(notificationText))
 	})
 	if err != nil {
 		return nil, err
@@ -48,8 +48,8 @@ func NewHandler() (*http.ServeMux, error) {
 	handler.Handle(NotificationsUrl, websocket.Handler(func(ws *websocket.Conn) {
 		// deliver the notifications through the WebSocket
 		log.Print("### notification WS opened")
-		for message := range messageChan {
-			ws.Write(message)
+		for notification := range notificationsChan {
+			ws.Write(notification)
 		}
 		log.Print("### notification WS closed")
 	}))
