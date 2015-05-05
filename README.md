@@ -11,7 +11,7 @@ Web interface
 -------------
 
 This package comes with an additional [HTTP/WebSocket interface](web/) which
-aims to provide a straightforward way to start developing HTML based GDB front
+aims to provide a straightforward way to start developing web-based GDB front
 ends.
 
 A dummy example can be found in the [example folder](web/example).

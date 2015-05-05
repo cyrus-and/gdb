@@ -1,7 +1,7 @@
-gdb/web example
----------------
+web example
+===========
 
-This is a very simple example of how the `gdb/web` package can be used to build
+This is a very simple example of how the `web` package can be used to build
 a web-based front end for GDB.
 
 ![Screenshot](http://i.imgur.com/qF2TrZE.png)
