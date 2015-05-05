@@ -17,7 +17,7 @@ type Gdb struct {
 	pts *os.File
 	cmd *exec.Cmd
 
-	mutex  sync.Mutex
+	mutex  sync.RWMutex
 	stdin  io.WriteCloser
 	stdout io.ReadCloser
 

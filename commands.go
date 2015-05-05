@@ -19,15 +19,13 @@ type NotificationCallback func(notification map[string]interface{})
 // be: options, parameters or "--". It returns a generic object which represents
 // the reply of GDB or an error in case the command cannot be delivered to GDB.
 func (gdb *Gdb) Send(operation string, arguments ...string) (map[string]interface{}, error) {
-	// atomically increase the sequence number
+	// atomically increase the sequence number and queue a pending command
+	pending := make(chan map[string]interface{})
 	gdb.mutex.Lock()
 	sequence := strconv.FormatInt(gdb.sequence, 10)
+	gdb.pending[sequence] = pending
 	gdb.sequence++
 	gdb.mutex.Unlock()
-
-	// queue a pending command
-	pending := make(chan map[string]interface{})
-	gdb.pending[sequence] = pending
 
 	// prepare the command
 	buffer := bytes.NewBufferString(fmt.Sprintf("%s-%s", sequence, operation))
@@ -44,7 +42,9 @@ func (gdb *Gdb) Send(operation string, arguments ...string) (map[string]interfac
 
 	// wait for a response
 	result := <-pending
+	gdb.mutex.Lock()
 	delete(gdb.pending, sequence)
+	gdb.mutex.Unlock()
 	return result, nil
 }
 
@@ -65,7 +65,9 @@ func (gdb *Gdb) recordReader() {
 			// if it is a result record remove the sequence field and complete
 			// the pending command
 			delete(record, sequenceKey)
+			gdb.mutex.RLock()
 			pending := gdb.pending[sequence.(string)]
+			gdb.mutex.RUnlock()
 			pending <- record
 		} else {
 			if gdb.onNotification != nil {
