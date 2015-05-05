@@ -92,8 +92,8 @@ which can be converted to JSON with `json.Marshal()` obtaining:
 }
 ```
 
-Mac OS X caveats
-----------------
+Mac OS X
+--------
 
 ### Setting up GDB on Darwin
 
@@ -102,7 +102,11 @@ OS X users may obtain a copy using [Homebrew][homebrew] for example, then they
 may need to give GDB permission to control other processes as described
 [here][gdb-on-mac].
 
-### Pseudoterminals
+### Issues
+
+The Mac OS X support, though, is partial and buggy due to the following issues.
+
+#### Pseudoterminals
 
 I/O operations on the target program happens through a pseudoterminal obtained
 using the [pty][pty] package which basically uses the `/dev/ptmx` on *nix
@@ -112,6 +116,11 @@ There are some unclear behaviors on Mac OS X. Calling `gdb.Write()` when the
 target program is not running is a no-op, on Linux instead writes are somewhat
 buffered and delivered later. Likewise, `gdb.Read()` may returns EOF even though
 there is actually data to read, a solution may be keep trying.
+
+#### Interrupt
+
+Sending a `SIGINT` signal to GDB has no effect on Mac OS X, on Linux instead
+this is equivalent to typing `^C`, so `gdb.Interrupt()` will not work.
 
 Resources
 ---------
