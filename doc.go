@@ -1,6 +1,11 @@
 // Package gdb provides a convenient way to interact with the GDB/MI
 // interface. The methods offered by this module are very low level, the main
-// goal is to avoid the tedious parsing of the MI2 line based text interface.
+// goals are:
+//
+// - avoid the tedious parsing of the MI2 line-based text interface;
+//
+// - bypass a known bug(https://sourceware.org/bugzilla/show_bug.cgi?id=8759)
+//   which prevents to distinguish the target program's output from MI2 records.
 //
 // The objects returned as a result of the commands or as asynchronous
 // notifications are generic Go maps suitable to be converted to JSON format

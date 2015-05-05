@@ -2,10 +2,13 @@ gdb
 ===
 
 Package `gdb` provides a convenient way to interact with the GDB/MI
-interface. The methods offered by this module are very low level, the main goal
-is to avoid the tedious parsing of the MI2 line-based text interface and bypass
-a [known bug][mi2-bug] which prevent to distinguish the target program's output
-from MI2 records.
+interface. The methods offered by this module are very low level, the main goals
+are:
+
+- avoid the tedious parsing of the MI2 line-based text interface;
+
+- bypass a [known bug][mi2-bug] which prevents to distinguish the target
+program's output from MI2 records.
 
 Web interface
 -------------
