@@ -28,3 +28,11 @@ Example
 -------
 
 A dummy example can be found in the [example](example/) directory.
+
+Installation
+------------
+
+This package requires the `websocket` library from the additional networking
+packages:
+
+    go get golang.org/x/net/websocket

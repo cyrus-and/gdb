@@ -15,12 +15,16 @@ Usage
 
         make -C test/ dummy
 
-3. start the server with:
+3. fetch the WebSocket library:
+
+        go get golang.org/x/net/websocket
+
+4. start the server with:
 
         go run main.go
 
    then load `http://localhost:8080/` in your browser
 
-4. load the test program using a relative path `test/dummy`;
+5. load the test program using a relative path `test/dummy`;
 
-5. the rest should be straightforward...
+6. the rest should be straightforward...
