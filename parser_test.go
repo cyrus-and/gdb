@@ -13,7 +13,7 @@ func checkParseRecord(t *testing.T, input, expected string) {
 		t.Fatal(err)
 	}
 	if !reflect.DeepEqual(inputObj, expectedObj) {
-		t.Error(inputObj, "!=", expectedObj)
+		t.Fatal(inputObj, "!=", expectedObj)
 	}
 }
 

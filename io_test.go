@@ -30,7 +30,7 @@ func TestIO(t *testing.T) {
 		if string(buf[:n]) != expectedIn {
 			fmt.Printf("'%s'\n", buf[:n])
 			fmt.Printf("'%s'\n", []byte(expectedIn))
-			t.Error("should read back the input")
+			t.Fatal("should read back the input")
 		}
 
 		// read the second line
@@ -41,13 +41,13 @@ func TestIO(t *testing.T) {
 		if string(buf[:n]) != expectedOut {
 			fmt.Printf("'%s'\n", buf[:n])
 			fmt.Printf("'%s'\n", []byte(expectedIn))
-			t.Error("should read the proper output")
+			t.Fatal("should read the proper output")
 		}
 
 		// try another read
 		n, err = gdb.Read(buf)
 		if err == nil {
-			t.Error("read should fail")
+			t.Fatal("read should fail")
 		}
 
 		done <- true
