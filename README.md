@@ -28,13 +28,25 @@ package main
 import (
 	"fmt"
 	"github.com/cyrus-and/gdb"
+	"io"
+	"os"
 )
 
 func main() {
+	// start a new instance and pipe the target output to stdout
 	gdb, _ := gdb.New(nil)
-	gdb.Send("var-create", "foo", "@", "40 + 2")
-	result, _ := gdb.Send("var-evaluate-expression", "foo")
-	fmt.Println(result)
+	go io.Copy(os.Stdout, gdb)
+
+	// evaluate an expression
+	gdb.Send("var-create", "x", "@", "40 + 2")
+	fmt.Println(gdb.Send("var-evaluate-expression", "x"))
+
+	// load and run a program
+	gdb.Send("file-exec-file", "wc")
+	gdb.Send("exec-arguments", "-w")
+	gdb.Write([]byte("This sentence has five words.\n\x04")) // EOT
+	gdb.Send("exec-run")
+
 	gdb.Exit()
 }
 ```
