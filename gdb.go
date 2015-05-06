@@ -101,14 +101,17 @@ func (gdb *Gdb) Exit() error {
 		return err
 	}
 
-	// TODO closing the terminal causes "read /dev/ptmx: bad file descriptor" on
-	// Mac OS X and "read /dev/ptmx: input/output error" on Linux
-	// if err := gdb.ptm.Close(); err != nil {
-	// return err
-	// }
-	// if err := gdb.pts.Close(); err != nil {
-	// return err
-	// }
+	// close the target program's terminal, since the lifetime of the terminal
+	// is longer that the one of the targer program's instances reading from a
+	// Gdb object ,i.e., the master side will never return EOF (at least on
+	// Linux) so the only way to stop reading is to intercept the I/O error
+	// caused by closing the terminal
+	if err := gdb.ptm.Close(); err != nil {
+		return err
+	}
+	if err := gdb.pts.Close(); err != nil {
+		return err
+	}
 
 	return nil
 }
