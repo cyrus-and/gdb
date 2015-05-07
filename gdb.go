@@ -9,7 +9,7 @@ import (
 )
 
 // Gdb represents a GDB instance. It implements the ReadWriter interface to
-// read/write data from/to the targer program's TTY.
+// read/write data from/to the target program's TTY.
 type Gdb struct {
 	io.ReadWriter
 
@@ -27,8 +27,8 @@ type Gdb struct {
 	onNotification NotificationCallback
 }
 
-// New creates and start a new GDB instance. onNotification if not nil is the
-// callback used deliver to the client the asynchronous notifications sent by
+// New creates and starts a new GDB instance. onNotification if not nil is the
+// callback used to deliver to the client the asynchronous notifications sent by
 // GDB. It returns a pointer to the newly created instance handled or an error.
 func New(onNotification NotificationCallback) (*Gdb, error) {
 	gdb := Gdb{onNotification: onNotification}
