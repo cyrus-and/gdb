@@ -31,8 +31,6 @@ type Gdb struct {
 // callback used to deliver to the client the asynchronous notifications sent by
 // GDB. It returns a pointer to the newly created instance handled or an error.
 func New(onNotification NotificationCallback) (*Gdb, error) {
-	gdb := Gdb{onNotification: onNotification}
-
 	// open a new terminal (master and slave) for the target program, they are
 	// both saved so that they are nore garbage collected after this function
 	// ends
@@ -40,11 +38,32 @@ func New(onNotification NotificationCallback) (*Gdb, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	// create GDB command
+	cmd := []string{"gdb", "--nx", "--quiet", "--interpreter=mi2", "--tty", pts.Name()}
+	gdb, err := NewCmd(cmd, onNotification)
+
+	if err != nil {
+		ptm.Close()
+		pts.Close()
+		return nil, err
+	}
+
 	gdb.ptm = ptm
 	gdb.pts = pts
 
-	// create GDB command
-	gdb.cmd = exec.Command("gdb", "--nx", "--quiet", "--interpreter=mi2", "--tty", pts.Name())
+	return gdb, nil
+}
+
+// NewCmd creates a new GDB instance like New, but allows explicitely
+// passing the gdb command to run (including all arguments). cmd is a
+// which is passed as-is to exec.Command, so the first element should be
+// the command to run, and the remaining elements should each contain a
+// single argument.
+func NewCmd(cmd []string, onNotification NotificationCallback) (*Gdb, error) {
+	gdb := Gdb{onNotification: onNotification}
+
+	gdb.cmd = exec.Command(cmd[0], cmd[1:]...)
 
 	// GDB standard input
 	stdin, err := gdb.cmd.StdinPipe()
@@ -106,11 +125,15 @@ func (gdb *Gdb) Exit() error {
 	// Gdb object ,i.e., the master side will never return EOF (at least on
 	// Linux) so the only way to stop reading is to intercept the I/O error
 	// caused by closing the terminal
-	if err := gdb.ptm.Close(); err != nil {
-		return err
+	if gdb.ptm != nil {
+		if err := gdb.ptm.Close(); err != nil {
+			return err
+		}
 	}
-	if err := gdb.pts.Close(); err != nil {
-		return err
+	if gdb.pts != nil {
+		if err := gdb.pts.Close(); err != nil {
+			return err
+		}
 	}
 
 	return nil
