@@ -59,68 +59,68 @@ var yyExca = []int{
 	-2, 0,
 }
 
-const yyNprod = 31
+const yyNprod = 32
 const yyPrivate = 57344
 
 var yyTokenNames []string
 var yyStates []string
 
-const yyLast = 54
+const yyLast = 59
 
 var yyAct = []int{
 
-	25, 30, 43, 24, 47, 18, 31, 27, 45, 23,
-	28, 34, 48, 35, 40, 34, 46, 35, 20, 21,
-	22, 27, 26, 1, 11, 12, 13, 44, 29, 26,
-	19, 14, 37, 17, 10, 16, 42, 41, 36, 7,
-	8, 9, 15, 39, 38, 33, 32, 49, 50, 5,
-	4, 3, 2, 6,
+	27, 36, 26, 38, 47, 50, 31, 18, 37, 48,
+	28, 32, 25, 30, 51, 40, 44, 30, 49, 40,
+	20, 22, 23, 31, 28, 24, 28, 19, 21, 29,
+	41, 17, 35, 33, 34, 30, 11, 12, 16, 13,
+	10, 46, 45, 14, 15, 7, 8, 9, 1, 43,
+	52, 53, 42, 39, 5, 4, 3, 2, 6,
 }
 var yyPact = []int{
 
-	30, -1000, -1000, -1000, -1000, -1000, 19, 38, 31, 29,
-	-1000, 26, 26, 26, 26, -1000, -1000, -1000, -1000, 1,
-	-1000, -1000, -1000, 25, -1, -1000, 3, 25, 2, -1000,
-	-1000, -1000, -1000, -1000, 18, -2, 13, -1000, 0, -4,
-	-1000, -1000, -1000, 3, -1000, 2, -1000, 25, -1000, -1000,
-	-1000,
+	36, -1000, -1000, -1000, -1000, -1000, 31, 40, 34, 27,
+	-1000, 23, 24, 23, 23, -1000, -1000, -1000, -1000, 18,
+	-1000, 5, -1000, -1000, 6, 22, -1, -1000, 3, -1000,
+	20, 6, 4, 16, -1000, -1000, -1000, -1000, -1000, -1000,
+	0, -1000, 2, -2, -1000, -1000, -1000, 3, 4, -1000,
+	6, -1000, -1000, -1000,
 }
 var yyPgo = []int{
 
-	0, 53, 3, 52, 51, 50, 49, 46, 5, 0,
-	1, 45, 44, 43, 23,
+	0, 58, 2, 57, 56, 55, 54, 3, 7, 0,
+	1, 53, 52, 49, 48,
 }
 var yyR1 = []int{
 
-	0, 14, 3, 3, 3, 4, 4, 4, 8, 8,
-	5, 5, 5, 6, 2, 2, 1, 1, 9, 10,
-	10, 10, 12, 12, 7, 7, 13, 13, 11, 11,
-	11,
+	0, 14, 3, 3, 3, 4, 4, 4, 4, 8,
+	8, 5, 5, 5, 6, 2, 2, 1, 1, 9,
+	10, 10, 10, 12, 12, 7, 7, 13, 13, 11,
+	11, 11,
 }
 var yyR2 = []int{
 
-	0, 1, 1, 1, 1, 3, 3, 3, 3, 1,
-	2, 2, 2, 3, 3, 1, 0, 1, 3, 1,
-	1, 1, 3, 1, 3, 2, 3, 1, 3, 3,
-	2,
+	0, 1, 1, 1, 1, 3, 3, 5, 3, 3,
+	1, 2, 2, 2, 3, 3, 1, 0, 1, 3,
+	1, 1, 1, 3, 1, 3, 2, 3, 1, 3,
+	3, 2,
 }
 var yyChk = []int{
 
 	-1000, -14, -3, -4, -5, -6, -1, 9, 10, 11,
-	4, 5, 6, 7, 12, 4, 4, 4, -8, 4,
-	-8, -8, -8, 8, -2, -9, 4, 8, 7, -9,
-	-10, 4, -7, -11, 13, 15, -2, 14, -12, -13,
-	16, -10, -9, 4, 14, 8, 16, 8, 16, -10,
-	-9,
+	4, 5, 6, 8, 12, 4, 4, 4, -8, 4,
+	-8, 4, -8, -8, 7, 7, -2, -9, 4, -7,
+	13, 7, 8, -2, 14, -9, -10, 4, -7, -11,
+	15, 14, -12, -13, 16, -10, -9, 4, 7, 16,
+	7, 16, -10, -9,
 }
 var yyDef = []int{
 
-	16, -2, 1, 2, 3, 4, 0, 0, 0, 0,
-	17, 0, 0, 0, 0, 10, 11, 12, 5, 9,
-	6, 7, 13, 0, 8, 15, 0, 0, 0, 14,
-	18, 19, 20, 21, 0, 0, 0, 25, 0, 0,
-	30, 23, 27, 19, 24, 0, 28, 0, 29, 22,
-	26,
+	17, -2, 1, 2, 3, 4, 0, 0, 0, 0,
+	18, 0, 0, 0, 0, 11, 12, 13, 5, 10,
+	6, 10, 8, 14, 0, 0, 9, 16, 0, 7,
+	0, 0, 0, 0, 26, 15, 19, 20, 21, 22,
+	0, 25, 0, 0, 31, 24, 28, 20, 0, 29,
+	0, 30, 23, 27,
 }
 var yyTok1 = []int{
 
@@ -128,9 +128,9 @@ var yyTok1 = []int{
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 	3, 3, 3, 3, 3, 3, 3, 3, 11, 3,
-	3, 3, 5, 6, 8, 3, 3, 3, 3, 3,
+	3, 3, 5, 6, 7, 3, 3, 3, 3, 3,
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-	3, 7, 3, 3, 10, 3, 3, 3, 3, 3,
+	3, 8, 3, 3, 10, 3, 3, 3, 3, 3,
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 	3, 15, 3, 16, 12, 3, 3, 3, 3, 3,
@@ -395,115 +395,115 @@ yydefault:
 	case 7:
 		//line grammar.y:58
 		{
-			yyVAL.record = newClassResult("notify", yyS[yypt-0].class_result.class, yyS[yypt-0].class_result.payload)
+			yyVAL.record = newClassResult("status", yyS[yypt-2].text, yyS[yypt-0].record)
 		}
 	case 8:
-		//line grammar.y:61
+		//line grammar.y:59
 		{
-			yyVAL.class_result.class, yyVAL.class_result.payload = yyS[yypt-2].text, yyS[yypt-0].record
+			yyVAL.record = newClassResult("notify", yyS[yypt-0].class_result.class, yyS[yypt-0].class_result.payload)
 		}
 	case 9:
 		//line grammar.y:62
 		{
-			yyVAL.class_result.class, yyVAL.class_result.payload = yyS[yypt-0].text, nil
+			yyVAL.class_result.class, yyVAL.class_result.payload = yyS[yypt-2].text, yyS[yypt-0].record
 		}
 	case 10:
-		//line grammar.y:65
+		//line grammar.y:63
 		{
-			yyVAL.record = map[string]interface{}{typeKey: "console", payloadKey: yyS[yypt-0].text}
+			yyVAL.class_result.class, yyVAL.class_result.payload = yyS[yypt-0].text, nil
 		}
 	case 11:
 		//line grammar.y:66
 		{
-			yyVAL.record = map[string]interface{}{typeKey: "target", payloadKey: yyS[yypt-0].text}
+			yyVAL.record = map[string]interface{}{typeKey: "console", payloadKey: yyS[yypt-0].text}
 		}
 	case 12:
 		//line grammar.y:67
 		{
-			yyVAL.record = map[string]interface{}{typeKey: "log", payloadKey: yyS[yypt-0].text}
+			yyVAL.record = map[string]interface{}{typeKey: "target", payloadKey: yyS[yypt-0].text}
 		}
 	case 13:
-		//line grammar.y:71
+		//line grammar.y:68
+		{
+			yyVAL.record = map[string]interface{}{typeKey: "log", payloadKey: yyS[yypt-0].text}
+		}
+	case 14:
+		//line grammar.y:72
 		{
 			yyVAL.record = map[string]interface{}{sequenceKey: yyS[yypt-2].text, classKey: yyS[yypt-0].class_result.class}
 			if yyS[yypt-0].class_result.payload != nil {
 				yyVAL.record[payloadKey] = yyS[yypt-0].class_result.payload
 			}
 		}
-	case 14:
-		//line grammar.y:77
-		{
-			yyVAL.record[yyS[yypt-0].result_pair.variable] = yyS[yypt-0].result_pair.value
-		}
 	case 15:
 		//line grammar.y:78
 		{
-			yyVAL.record = map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value}
+			yyVAL.record[yyS[yypt-0].result_pair.variable] = yyS[yypt-0].result_pair.value
 		}
 	case 16:
-		//line grammar.y:81
+		//line grammar.y:79
 		{
-			yyVAL.text = ""
+			yyVAL.record = map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value}
 		}
 	case 17:
 		//line grammar.y:82
 		{
-			yyVAL.text = yyS[yypt-0].text
+			yyVAL.text = ""
 		}
 	case 18:
-		//line grammar.y:85
+		//line grammar.y:83
 		{
-			yyVAL.result_pair.variable, yyVAL.result_pair.value = yyS[yypt-2].text, yyS[yypt-0].value
+			yyVAL.text = yyS[yypt-0].text
 		}
 	case 19:
-		//line grammar.y:88
+		//line grammar.y:86
 		{
-			yyVAL.value = yyS[yypt-0].text
+			yyVAL.result_pair.variable, yyVAL.result_pair.value = yyS[yypt-2].text, yyS[yypt-0].value
 		}
 	case 20:
 		//line grammar.y:89
 		{
-			yyVAL.value = yyS[yypt-0].record
+			yyVAL.value = yyS[yypt-0].text
 		}
 	case 21:
 		//line grammar.y:90
 		{
-			yyVAL.value = yyS[yypt-0].list
+			yyVAL.value = yyS[yypt-0].record
 		}
 	case 22:
-		//line grammar.y:93
+		//line grammar.y:91
 		{
-			yyVAL.list = append(yyVAL.list, yyS[yypt-0].value)
+			yyVAL.value = yyS[yypt-0].list
 		}
 	case 23:
 		//line grammar.y:94
 		{
-			yyVAL.list = []interface{}{yyS[yypt-0].value}
+			yyVAL.list = append(yyVAL.list, yyS[yypt-0].value)
 		}
 	case 24:
-		//line grammar.y:97
+		//line grammar.y:95
 		{
-			yyVAL.record = yyS[yypt-1].record
+			yyVAL.list = []interface{}{yyS[yypt-0].value}
 		}
 	case 25:
 		//line grammar.y:98
 		{
-			yyVAL.record = map[string]interface{}{}
+			yyVAL.record = yyS[yypt-1].record
 		}
 	case 26:
-		//line grammar.y:101
+		//line grammar.y:99
 		{
-			yyVAL.list = append(yyVAL.list, map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value})
+			yyVAL.record = map[string]interface{}{}
 		}
 	case 27:
 		//line grammar.y:102
 		{
-			yyVAL.list = []interface{}{map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value}}
+			yyVAL.list = append(yyVAL.list, map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value})
 		}
 	case 28:
-		//line grammar.y:105
+		//line grammar.y:103
 		{
-			yyVAL.list = yyS[yypt-1].list
+			yyVAL.list = []interface{}{map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value}}
 		}
 	case 29:
 		//line grammar.y:106
@@ -512,6 +512,11 @@ yydefault:
 		}
 	case 30:
 		//line grammar.y:107
+		{
+			yyVAL.list = yyS[yypt-1].list
+		}
+	case 31:
+		//line grammar.y:108
 		{
 			yyVAL.list = []interface{}{}
 		}

@@ -55,6 +55,7 @@ record:
 async_record:
 	token '*' class_result { $$ = newClassResult("exec",   $3.class, $3.payload) } |
 	token '+' class_result { $$ = newClassResult("status", $3.class, $3.payload) } |
+	token '+' text ',' tuple { $$ = newClassResult("status", $3, $5) } |
 	token '=' class_result { $$ = newClassResult("notify", $3.class, $3.payload) };
 
 class_result:
