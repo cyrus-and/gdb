@@ -35,7 +35,7 @@
 
 %token text
 
-%type <text>         text
+%type <text>         text token
 %type <record>       result_list record async_record stream_record result_record tuple
 %type <class_result> class_result
 %type <result_pair>  result
@@ -53,9 +53,9 @@ record:
 	result_record;
 
 async_record:
-	'*' class_result { $$ = newClassResult("exec",   $2.class, $2.payload) } |
-	'+' class_result { $$ = newClassResult("status", $2.class, $2.payload) } |
-	'=' class_result { $$ = newClassResult("notify", $2.class, $2.payload) };
+	token '*' class_result { $$ = newClassResult("exec",   $3.class, $3.payload) } |
+	token '+' class_result { $$ = newClassResult("status", $3.class, $3.payload) } |
+	token '=' class_result { $$ = newClassResult("notify", $3.class, $3.payload) };
 
 class_result:
 	text ',' result_list { $$.class, $$.payload = $1, $3 } |
@@ -67,7 +67,7 @@ stream_record:
 	'&' text { $$ = map[string]interface{}{typeKey: "log",     payloadKey: $2} };
 
 result_record:
-	text '^' class_result
+	token '^' class_result
 	{
 		$$ = map[string]interface{}{sequenceKey: $1, classKey: $3.class}
 		if $3.payload != nil { $$[payloadKey] = $3.payload }
@@ -76,6 +76,10 @@ result_record:
 result_list:
 	result_list ',' result { $$[$3.variable] = $3.value } |
 	result                 { $$ = map[string]interface{}{$1.variable: $1.value} };
+
+token:
+	     { $$ = "" } |
+	text { $$ = $1 }
 
 result:
 	text '=' value { $$.variable, $$.value = $1, $3 };

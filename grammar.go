@@ -59,63 +59,68 @@ var yyExca = []int{
 	-2, 0,
 }
 
-const yyNprod = 29
+const yyNprod = 31
 const yyPrivate = 57344
 
 var yyTokenNames []string
 var yyStates []string
 
-const yyLast = 53
+const yyLast = 54
 
 var yyAct = []int{
 
-	24, 29, 13, 23, 42, 20, 46, 26, 30, 21,
-	15, 16, 27, 33, 47, 34, 39, 33, 44, 34,
-	25, 25, 26, 22, 14, 19, 45, 28, 43, 18,
-	36, 17, 1, 38, 37, 41, 40, 35, 12, 6,
-	7, 8, 32, 9, 10, 11, 48, 49, 31, 5,
-	4, 3, 2,
+	25, 30, 43, 24, 47, 18, 31, 27, 45, 23,
+	28, 34, 48, 35, 40, 34, 46, 35, 20, 21,
+	22, 27, 26, 1, 11, 12, 13, 44, 29, 26,
+	19, 14, 37, 17, 10, 16, 42, 41, 36, 7,
+	8, 9, 15, 39, 38, 33, 32, 49, 50, 5,
+	4, 3, 2, 6,
 }
 var yyPact = []int{
 
-	34, -1000, -1000, -1000, -1000, -1000, 20, 20, 20, 27,
-	25, 21, -7, -1000, 1, -1000, -1000, -1000, -1000, -1000,
-	20, 17, -1000, -1, -1000, 5, 17, 4, -1000, -1000,
-	-1000, -1000, -1000, 16, 0, 14, -1000, 10, -2, -1000,
-	-1000, -1000, 5, -1000, 4, -1000, 17, -1000, -1000, -1000,
+	30, -1000, -1000, -1000, -1000, -1000, 19, 38, 31, 29,
+	-1000, 26, 26, 26, 26, -1000, -1000, -1000, -1000, 1,
+	-1000, -1000, -1000, 25, -1, -1000, 3, 25, 2, -1000,
+	-1000, -1000, -1000, -1000, 18, -2, 13, -1000, 0, -4,
+	-1000, -1000, -1000, 3, -1000, 2, -1000, 25, -1000, -1000,
+	-1000,
 }
 var yyPgo = []int{
 
-	0, 3, 52, 51, 50, 49, 48, 2, 0, 1,
-	42, 34, 33, 32,
+	0, 53, 3, 52, 51, 50, 49, 46, 5, 0,
+	1, 45, 44, 43, 23,
 }
 var yyR1 = []int{
 
-	0, 13, 2, 2, 2, 3, 3, 3, 7, 7,
-	4, 4, 4, 5, 1, 1, 8, 9, 9, 9,
-	11, 11, 6, 6, 12, 12, 10, 10, 10,
+	0, 14, 3, 3, 3, 4, 4, 4, 8, 8,
+	5, 5, 5, 6, 2, 2, 1, 1, 9, 10,
+	10, 10, 12, 12, 7, 7, 13, 13, 11, 11,
+	11,
 }
 var yyR2 = []int{
 
-	0, 1, 1, 1, 1, 2, 2, 2, 3, 1,
-	2, 2, 2, 3, 3, 1, 3, 1, 1, 1,
-	3, 1, 3, 2, 3, 1, 3, 3, 2,
+	0, 1, 1, 1, 1, 3, 3, 3, 3, 1,
+	2, 2, 2, 3, 3, 1, 0, 1, 3, 1,
+	1, 1, 3, 1, 3, 2, 3, 1, 3, 3,
+	2,
 }
 var yyChk = []int{
 
-	-1000, -13, -2, -3, -4, -5, 5, 6, 7, 9,
-	10, 11, 4, -7, 4, -7, -7, 4, 4, 4,
-	12, 8, -7, -1, -8, 4, 8, 7, -8, -9,
-	4, -6, -10, 13, 15, -1, 14, -11, -12, 16,
-	-9, -8, 4, 14, 8, 16, 8, 16, -9, -8,
+	-1000, -14, -3, -4, -5, -6, -1, 9, 10, 11,
+	4, 5, 6, 7, 12, 4, 4, 4, -8, 4,
+	-8, -8, -8, 8, -2, -9, 4, 8, 7, -9,
+	-10, 4, -7, -11, 13, 15, -2, 14, -12, -13,
+	16, -10, -9, 4, 14, 8, 16, 8, 16, -10,
+	-9,
 }
 var yyDef = []int{
 
-	0, -2, 1, 2, 3, 4, 0, 0, 0, 0,
-	0, 0, 0, 5, 9, 6, 7, 10, 11, 12,
-	0, 0, 13, 8, 15, 0, 0, 0, 14, 16,
-	17, 18, 19, 0, 0, 0, 23, 0, 0, 28,
-	21, 25, 17, 22, 0, 26, 0, 27, 20, 24,
+	16, -2, 1, 2, 3, 4, 0, 0, 0, 0,
+	17, 0, 0, 0, 0, 10, 11, 12, 5, 9,
+	6, 7, 13, 0, 8, 15, 0, 0, 0, 14,
+	18, 19, 20, 21, 0, 0, 0, 25, 0, 0,
+	30, 23, 27, 19, 24, 0, 28, 0, 29, 22,
+	26,
 }
 var yyTok1 = []int{
 
@@ -438,65 +443,75 @@ yydefault:
 	case 16:
 		//line grammar.y:81
 		{
-			yyVAL.result_pair.variable, yyVAL.result_pair.value = yyS[yypt-2].text, yyS[yypt-0].value
+			yyVAL.text = ""
 		}
 	case 17:
-		//line grammar.y:84
+		//line grammar.y:82
 		{
-			yyVAL.value = yyS[yypt-0].text
+			yyVAL.text = yyS[yypt-0].text
 		}
 	case 18:
 		//line grammar.y:85
 		{
-			yyVAL.value = yyS[yypt-0].record
+			yyVAL.result_pair.variable, yyVAL.result_pair.value = yyS[yypt-2].text, yyS[yypt-0].value
 		}
 	case 19:
-		//line grammar.y:86
+		//line grammar.y:88
 		{
-			yyVAL.value = yyS[yypt-0].list
+			yyVAL.value = yyS[yypt-0].text
 		}
 	case 20:
 		//line grammar.y:89
 		{
-			yyVAL.list = append(yyVAL.list, yyS[yypt-0].value)
+			yyVAL.value = yyS[yypt-0].record
 		}
 	case 21:
 		//line grammar.y:90
 		{
-			yyVAL.list = []interface{}{yyS[yypt-0].value}
+			yyVAL.value = yyS[yypt-0].list
 		}
 	case 22:
 		//line grammar.y:93
 		{
-			yyVAL.record = yyS[yypt-1].record
+			yyVAL.list = append(yyVAL.list, yyS[yypt-0].value)
 		}
 	case 23:
 		//line grammar.y:94
 		{
-			yyVAL.record = map[string]interface{}{}
+			yyVAL.list = []interface{}{yyS[yypt-0].value}
 		}
 	case 24:
 		//line grammar.y:97
 		{
-			yyVAL.list = append(yyVAL.list, map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value})
+			yyVAL.record = yyS[yypt-1].record
 		}
 	case 25:
 		//line grammar.y:98
 		{
-			yyVAL.list = []interface{}{map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value}}
+			yyVAL.record = map[string]interface{}{}
 		}
 	case 26:
 		//line grammar.y:101
 		{
-			yyVAL.list = yyS[yypt-1].list
+			yyVAL.list = append(yyVAL.list, map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value})
 		}
 	case 27:
 		//line grammar.y:102
 		{
-			yyVAL.list = yyS[yypt-1].list
+			yyVAL.list = []interface{}{map[string]interface{}{yyS[yypt-0].result_pair.variable: yyS[yypt-0].result_pair.value}}
 		}
 	case 28:
-		//line grammar.y:103
+		//line grammar.y:105
+		{
+			yyVAL.list = yyS[yypt-1].list
+		}
+	case 29:
+		//line grammar.y:106
+		{
+			yyVAL.list = yyS[yypt-1].list
+		}
+	case 30:
+		//line grammar.y:107
 		{
 			yyVAL.list = []interface{}{}
 		}
