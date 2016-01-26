@@ -25,6 +25,8 @@ type Gdb struct {
 	pending  map[string]chan map[string]interface{}
 
 	onNotification NotificationCallback
+
+	recordReaderDone chan bool
 }
 
 // New creates and starts a new GDB instance. onNotification if not nil is the
@@ -88,6 +90,8 @@ func NewCmd(cmd []string, onNotification NotificationCallback) (*Gdb, error) {
 	gdb.sequence = 1
 	gdb.pending = make(map[string]chan map[string]interface{})
 
+	gdb.recordReaderDone = make(chan bool)
+
 	// start the line reader
 	go gdb.recordReader()
 
@@ -116,6 +120,13 @@ func (gdb *Gdb) Exit() error {
 	if _, err := gdb.Send("gdb-exit"); err != nil {
 		return err
 	}
+
+	// Wait for the recordReader to finish (due to EOF on the pipe).
+	// If we do not wait for this, Wait() might clean up stdout
+	// while recordReader is still using it, leading to
+	// panic: read |0: bad file descriptor
+	<-gdb.recordReaderDone
+
 	if err := gdb.cmd.Wait(); err != nil {
 		return err
 	}

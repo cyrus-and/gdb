@@ -78,4 +78,5 @@ func (gdb *Gdb) recordReader() {
 	if err := scanner.Err(); err != nil {
 		panic(err)
 	}
+	gdb.recordReaderDone <- true
 }
