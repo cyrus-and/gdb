@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 // NotificationCallback is a callback used to report the notifications that GDB
@@ -31,7 +32,13 @@ func (gdb *Gdb) Send(operation string, arguments ...string) (map[string]interfac
 	buffer := bytes.NewBufferString(fmt.Sprintf("%s-%s", sequence, operation))
 	for _, argument := range arguments {
 		buffer.WriteByte(' ')
-		buffer.WriteString(strconv.Quote(argument))
+		// quote the argument only if needed because GDB interprets un/quoted
+		// values differently in some contexts, e.g., when the value is a
+		// number('1' vs '"1"') or an option ('--thread' vs '"--thread"')
+		if strings.ContainsAny(argument, "\a\b\f\n\r\t\v\\'\"") {
+			argument = strconv.Quote(argument)
+		}
+		buffer.WriteString(argument)
 	}
 	buffer.WriteByte('\n')
 
