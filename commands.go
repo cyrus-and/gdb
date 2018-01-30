@@ -3,6 +3,7 @@ package gdb
 import (
 	"bufio"
 	"bytes"
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -52,6 +53,30 @@ func (gdb *Gdb) Send(operation string, arguments ...string) (map[string]interfac
 	gdb.mutex.Lock()
 	delete(gdb.pending, sequence)
 	gdb.mutex.Unlock()
+	return result, nil
+}
+
+// CheckedSend works like Send, except that if the result returned by
+// gdb has class=error, CheckedSend returns a non-nil error value
+// (containing the gdb error message)
+func (gdb *Gdb) CheckedSend(operation string, arguments ...string) (map[string]interface{}, error) {
+	result, err := gdb.Send(operation, arguments...)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if result["class"] == "error" {
+		if payload, isMap := result["payload"].(map[string]interface{}); isMap {
+			if msg, isString := payload["msg"].(string); isString {
+				return nil, errors.New(msg)
+			}
+		}
+		// Class is error, but no message? Stringify the entire
+		// result as the error message then
+		return nil, errors.New("Unknown gdb error: " + fmt.Sprint(result["payload"]))
+	}
+
 	return result, nil
 }
 
