@@ -40,7 +40,7 @@ func TestIO(t *testing.T) {
 		}
 		if string(buf[:n]) != expectedOut {
 			fmt.Printf("'%s'\n", buf[:n])
-			fmt.Printf("'%s'\n", []byte(expectedIn))
+			fmt.Printf("'%s'\n", []byte(expectedOut))
 			t.Fatal("should read the proper output")
 		}
 
