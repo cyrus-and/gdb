@@ -36,7 +36,7 @@ func (gdb *Gdb) Send(operation string, arguments ...string) (map[string]interfac
 		// quote the argument only if needed because GDB interprets un/quoted
 		// values differently in some contexts, e.g., when the value is a
 		// number('1' vs '"1"') or an option ('--thread' vs '"--thread"')
-		if strings.ContainsAny(argument, "\a\b\f\n\r\t\v\\'\"") {
+		if strings.ContainsAny(argument, "\a\b\f\n\r\t\v\\'\" ") {
 			argument = strconv.Quote(argument)
 		}
 		buffer.WriteString(argument)
