@@ -137,6 +137,18 @@ there is actually data to read, a solution may be keep trying.
 Sending a `SIGINT` signal to GDB has no effect on Mac OS X, on Linux instead
 this is equivalent to typing `^C`, so `gdb.Interrupt()` will not work.
 
+Development
+-----------
+
+The [goyacc](https://pkg.go.dev/golang.org/x/tools/cmd/goyacc) tool is needed to generate the `grammar.go` file. Install it with:
+
+
+    go install golang.org/x/tools/cmd/goyacc@latest
+
+After that use the following to update the `grammar.go` file:
+
+    go generate -x
+
 Resources
 ---------
 
