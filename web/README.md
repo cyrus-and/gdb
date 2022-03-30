@@ -1,6 +1,6 @@
 # web
 
-Package `web` provides a simple web interface for the `gdb` module.
+Provides a simple web interface for the `gdb` module.
 
 Every new handler spawns a new GDB instance which is not meant to serve more than one client.
 
@@ -19,11 +19,3 @@ HTTP methods return 200 on success and 500 on error.
 ## Example
 
 A dummy example can be found in the [example](example/) directory.
-
-## Installation
-
-This package requires the `websocket` library from the additional networking packages:
-
-```
-go get golang.org/x/net/websocket
-```
