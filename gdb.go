@@ -57,11 +57,10 @@ func New(onNotification NotificationCallback) (*Gdb, error) {
 	return gdb, nil
 }
 
-// NewCmd creates a new GDB instance like New, but allows explicitely
-// passing the gdb command to run (including all arguments). cmd is a
-// which is passed as-is to exec.Command, so the first element should be
-// the command to run, and the remaining elements should each contain a
-// single argument.
+// NewCmd creates a new GDB instance like New, but allows explicitely passing
+// the gdb command to run (including all arguments). cmd is passed as-is to
+// exec.Command, so the first element should be the command to run, and the
+// remaining elements should each contain a single argument.
 func NewCmd(cmd []string, onNotification NotificationCallback) (*Gdb, error) {
 	gdb := Gdb{onNotification: onNotification}
 
