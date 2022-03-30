@@ -1,26 +1,18 @@
-gdb
-===
+# gdb
 
-Package `gdb` provides a convenient way to interact with the GDB/MI
-interface. The methods offered by this module are very low level, the main goals
-are:
+Package `gdb` provides a convenient way to interact with the GDB/MI interface. The methods offered by this module are very low level, the main goals are:
 
 - avoid the tedious parsing of the MI2 line-based text interface;
 
-- bypass a [known bug][mi2-bug] which prevents to distinguish the target
-program's output from MI2 records.
+- bypass a [known bug][mi2-bug] which prevents to distinguish the target program's output from MI2 records.
 
-Web interface
--------------
+## Web interface
 
-This package comes with an additional [HTTP/WebSocket interface](web/) which
-aims to provide a straightforward way to start developing web-based GDB front
-ends.
+This package comes with an additional [HTTP/WebSocket interface](web/) which aims to provide a straightforward way to start developing web-based GDB front ends.
 
 A dummy example can be found in the [example folder](web/example).
 
-Example
--------
+## Example
 
 ```go
 package main
@@ -51,25 +43,19 @@ func main() {
 }
 ```
 
-Installation
-------------
+## Installation
 
-    go get github.com/cyrus-and/gdb
+```
+go get -u github.com/cyrus-and/gdb
+```
 
-Documentation
--------------
+## Documentation
 
-[GoDoc][godoc]
+[GoDoc][godoc].
 
-Data representation
--------------------
+## Data representation
 
-The objects returned as a result of the commands or as asynchronous
-notifications are generic Go maps suitable to be converted to JSON format with
-`json.Marshal()`. The fields present in such objects are blindly added
-according to the records returned from GDB (see the
-[command syntax][mi2-syntax]): tuples are `map[string]interface{}` and lists are
-`[]interface{}`.
+The objects returned as a result of the commands or as asynchronous notifications are generic Go maps suitable to be converted to JSON format with `json.Marshal()`. The fields present in such objects are blindly added according to the records returned from GDB (see the [command syntax][mi2-syntax]): tuples are `map[string]interface{}` and lists are `[]interface{}`.
 
 Yet, some additional fields are added:
 
@@ -86,7 +72,9 @@ Yet, some additional fields are added:
 
 For example, the notification:
 
-    =thread-group-exited,id="i1",exit-code="0"
+```
+=thread-group-exited,id="i1",exit-code="0"
+```
 
 becomes the Go map:
 
@@ -107,15 +95,11 @@ which can be converted to JSON with `json.Marshal()` obtaining:
 }
 ```
 
-Mac OS X
---------
+## Mac OS X
 
 ### Setting up GDB on Darwin
 
-To use this module is mandatory to have a working version of GDB installed, Mac
-OS X users may obtain a copy using [Homebrew][homebrew] for example, then they
-may need to give GDB permission to control other processes as described
-[here][gdb-on-mac].
+To use this module is mandatory to have a working version of GDB installed, Mac OS X users may obtain a copy using [Homebrew][homebrew] for example, then they may need to give GDB permission to control other processes as described [here][gdb-on-mac].
 
 ### Issues
 
@@ -123,34 +107,29 @@ The Mac OS X support, though, is partial and buggy due to the following issues.
 
 #### Pseudoterminals
 
-I/O operations on the target program happens through a pseudoterminal obtained
-using the [pty][pty] package which basically uses the `/dev/ptmx` on *nix
-systems to request new terminal instances.
+I/O operations on the target program happens through a pseudoterminal obtained using the [pty][pty] package which basically uses the `/dev/ptmx` on *nix systems to request new terminal instances.
 
-There are some unclear behaviors on Mac OS X. Calling `gdb.Write()` when the
-target program is not running is a no-op, on Linux instead writes are somewhat
-buffered and delivered later. Likewise, `gdb.Read()` may returns EOF even though
-there is actually data to read, a solution may be keep trying.
+There are some unclear behaviors on Mac OS X. Calling `gdb.Write()` when the target program is not running is a no-op, on Linux instead writes are somewhat buffered and delivered later. Likewise, `gdb.Read()` may returns EOF even though there is actually data to read, a solution may be keep trying.
 
 #### Interrupt
 
-Sending a `SIGINT` signal to GDB has no effect on Mac OS X, on Linux instead
-this is equivalent to typing `^C`, so `gdb.Interrupt()` will not work.
+Sending a `SIGINT` signal to GDB has no effect on Mac OS X, on Linux instead this is equivalent to typing `^C`, so `gdb.Interrupt()` will not work.
 
-Development
------------
+## Development
 
 The [goyacc](https://pkg.go.dev/golang.org/x/tools/cmd/goyacc) tool is needed to generate the `grammar.go` file. Install it with:
 
-
-    go install golang.org/x/tools/cmd/goyacc@latest
+```
+go install golang.org/x/tools/cmd/goyacc@latest
+```
 
 After that use the following to update the `grammar.go` file:
 
-    go generate -x
+```
+go generate -x
+```
 
-Resources
----------
+## Resources
 
 - [The `GDB/MI` Interface][gdb-mi]
 
