@@ -1,11 +1,12 @@
 package gdb
 
 import (
-	"github.com/kr/pty"
 	"io"
 	"os"
 	"os/exec"
 	"sync"
+
+	"github.com/kr/pty"
 )
 
 // Gdb represents a GDB instance. It implements the ReadWriter interface to
@@ -38,6 +39,11 @@ func New(onNotification NotificationCallback) (*Gdb, error) {
 
 // Like New, but allows to specify the GDB executable path.
 func NewCustom(gdbPath string, onNotification NotificationCallback) (*Gdb, error) {
+	return NewCustom2([]string{gdbPath}, onNotification)
+}
+
+// NewCustom2 is like NewCustom but allows specifying additional args
+func NewCustom2(gdbCmd []string, onNotification NotificationCallback) (*Gdb, error) {
 	// open a new terminal (master and slave) for the target program, they are
 	// both saved so that they are nore garbage collected after this function
 	// ends
@@ -47,7 +53,7 @@ func NewCustom(gdbPath string, onNotification NotificationCallback) (*Gdb, error
 	}
 
 	// create GDB command
-	cmd := []string{gdbPath, "--nx", "--quiet", "--interpreter=mi2", "--tty", pts.Name()}
+	cmd := append(gdbCmd, "--nx", "--quiet", "--interpreter=mi2", "--tty", pts.Name())
 	gdb, err := NewCmd(cmd, onNotification)
 
 	if err != nil {
