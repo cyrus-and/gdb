@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/cyrus-and/gdb v0.0.0-20180213171718-0306a029f42f
-	golang.org/x/net v0.0.0-20220325170049-de3da57026de
+	golang.org/x/net v0.7.0
 )
 
 require (
